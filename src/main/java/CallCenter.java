@@ -24,9 +24,14 @@ public class CallCenter {
     public void takeToWork() {
         while (!storage.isEmpty()) {
             try {
-                Thread.sleep(3000);
-                System.out.println("Оператор " + Thread.currentThread().getName()
-                        + " взят в работу номер " + storage.poll());
+                Integer check = storage.poll();
+                if (check != null) {
+                    Thread.sleep(3000);
+                    System.out.println("Оператор " + Thread.currentThread().getName()
+                            + " взят в работу номер " + check);
+                } else {
+                    break;
+                }
             } catch (InterruptedException e) {
                 throw new RuntimeException();
             }
